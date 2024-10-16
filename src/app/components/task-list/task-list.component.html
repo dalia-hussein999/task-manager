@@ -1,1 +1,11 @@
-<p>task-list works!</p>
+<div class="task-list-container">
+    <h1>Todo List</h1>
+    <ul class="task-list">
+    @for (task of tasks; track task.title) {
+       <app-task-item [task]="task" (taskToggled)="onTaskToggled($event)"></app-task-item>
+        } @empty {
+        <li>There are no items.</li>
+        }
+    </ul>
+  </div>
+  

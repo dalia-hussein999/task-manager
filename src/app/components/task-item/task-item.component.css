@@ -1,0 +1,21 @@
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  li.completed span {
+    text-decoration: line-through;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  input[type="checkbox"] {
+    cursor: pointer;
+    transform: scale(1.5);
+  }
+  .completed {
+    text-decoration: line-through; 
+    color: gray; 
+}

@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FetchTasksService } from '../../services/fetch-tasks.service';
 import { Task } from '../../interfaces/task';
 import { catchError, of } from 'rxjs';
+import { TaskItemComponent } from "../task-item/task-item.component";
+
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
+  imports: [TaskItemComponent],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
@@ -29,12 +32,15 @@ export class TaskListComponent implements OnInit {
         })
       )
       .subscribe((data) => {
-        this.tasks = data;
+        this.tasks = data.slice(0, 20);
         console.log("tasks:", this.tasks);
       });
   }
 
-  toggleCompletion(task: Task): void {
-    task.completed = !task.completed;
+  onTaskToggled(updatedTask: Task) {
+   const index = this.tasks.findIndex((task) => task.id === updatedTask.id);
+    if (index !== -1) {
+      this.tasks[index] = updatedTask;
+    }
   }
 }
